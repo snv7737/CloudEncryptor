@@ -1,0 +1,2466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Cloud Encryptor ⚙️ ⌞SΠV7737™⌝</title>
+    <style>
+        /* Import Share Tech Mono font */
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+        
+        :root {
+            --bg: #000000;
+            --neon: #00ff66;
+            --accent: #00e6ff;
+            --danger: #ff0044;
+            --success: #00ff88;
+            --warning: #ffcc00;
+            --muted: #0a0a0a;
+            --header-bg: rgba(0, 0, 0, 0.6);
+            --footer-bg: rgba(0, 0, 0, 0.6);
+            --card-bg: rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            background: var(--bg);
+            color: var(--neon);
+            font-family: 'Share Tech Mono', monospace;
+            overflow-x: hidden;
+        }
+
+        /* Matrix Canvas - FIXED POSITIONING */
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            display: block;
+            background: #000;
+        }
+
+        /* Content Overlay */
+        .content-overlay {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Fixed Header */
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: var(--header-bg);
+            border-bottom: 1px solid rgba(0, 255, 102, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--neon);
+        }
+
+        .logo-subtitle {
+            font-size: 12px;
+            color: var(--accent);
+            opacity: 0.8;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Header Navigation */
+        .header-nav {
+            display: flex;
+            gap: 15px;
+            margin-right: 10px;
+        }
+
+        .nav-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 12px;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover {
+            color: var(--neon);
+            border-color: rgba(0, 255, 102, 0.3);
+            background: rgba(0, 255, 102, 0.05);
+        }
+
+        /* Menu Select */
+        .menu-select {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(0, 255, 102, 0.3);
+            color: var(--neon);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 12px;
+            cursor: pointer;
+            min-width: 100px;
+        }
+
+        .menu-select option {
+            background: #000;
+            color: var(--neon);
+        }
+
+        .language-select {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(0, 255, 102, 0.3);
+            color: var(--neon);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .language-select option {
+            background: #000;
+            color: var(--neon);
+        }
+
+        /* Fixed Footer */
+        .fixed-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: var(--footer-bg);
+            border-top: 1px solid rgba(0, 255, 102, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-left {
+            font-size: 12px;
+            color: var(--accent);
+            flex: 1;
+        }
+
+        .footer-center {
+            flex: 1;
+            text-align: center;
+        }
+
+        .footer-link {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-link:hover {
+            color: rgba(255, 255, 255, 0.6);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-right {
+            font-size: 12px;
+            color: var(--neon);
+            opacity: 0.8;
+            flex: 1;
+            text-align: right;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 70px;
+            margin-bottom: 50px;
+            padding: 30px 25px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 255, 102, 0.15);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(5px);
+        }
+
+        .card h2 {
+            color: var(--neon);
+            margin-bottom: 20px;
+            font-size: 18px;
+            border-bottom: 1px solid rgba(0, 255, 102, 0.2);
+            padding-bottom: 10px;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--accent);
+            font-size: 13px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            border-radius: 6px;
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--neon);
+            font-family: inherit;
+            font-size: 13px;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--neon);
+            box-shadow: 0 0 5px rgba(0, 255, 102, 0.3);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--neon), var(--accent));
+            color: #000;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(0, 255, 102, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(0, 255, 102, 0.1);
+            color: var(--neon);
+            border: 1px solid rgba(0, 255, 102, 0.3);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: rgba(0, 255, 102, 0.2);
+        }
+
+        .btn-danger {
+            background: rgba(255, 0, 68, 0.1);
+            color: var(--danger);
+            border: 1px solid rgba(255, 0, 68, 0.3);
+        }
+
+        /* Drag and Drop */
+        .drag-area {
+            border: 2px dashed rgba(0, 255, 102, 0.3);
+            border-radius: 6px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .drag-area:hover, .drag-area.dragover {
+            border-color: var(--neon);
+            background: rgba(0, 255, 102, 0.05);
+        }
+
+        /* File List */
+        .file-list {
+            margin-top: 15px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: rgba(0, 255, 102, 0.05);
+            border-radius: 4px;
+            margin-bottom: 5px;
+            font-size: 12px;
+            border: 1px solid rgba(0, 255, 102, 0.1);
+        }
+
+        .file-name {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .file-size {
+            color: var(--accent);
+            font-size: 11px;
+            margin-left: 10px;
+        }
+
+        /* Progress Bars */
+        .progress-container {
+            margin-top: 15px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 255, 102, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--neon));
+            border-radius: 2px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .progress-text {
+            font-size: 11px;
+            color: var(--accent);
+        }
+
+        /* Password Strength */
+        .password-strength {
+            margin-top: 8px;
+            font-size: 11px;
+        }
+
+        .strength-bar {
+            height: 3px;
+            background: #333;
+            border-radius: 2px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .strength-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            width: 0%;
+        }
+
+        /* Folder Picker */
+        .folder-picker {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .folder-name {
+            font-size: 11px;
+            color: var(--accent);
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Error Text */
+        .error-text {
+            color: var(--danger);
+            font-size: 11px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 20px 15px;
+            }
+            
+            .fixed-header, .fixed-footer {
+                padding: 0 15px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .logo {
+                font-size: 16px;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+            
+            .fixed-footer {
+                flex-direction: column;
+                height: auto;
+                padding: 10px 15px;
+                gap: 5px;
+            }
+            
+            .footer-left, .footer-center, .footer-right {
+                text-align: center;
+                flex: none;
+            }
+
+            .header-nav {
+                display: none;
+            }
+
+            .menu-select {
+                min-width: 80px;
+            }
+        }
+
+        /* Grid Layout */
+        .row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .col {
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .row {
+                flex-direction: column;
+            }
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            padding: 12px 18px;
+            border-radius: 6px;
+            color: white;
+            font-weight: 500;
+            z-index: 1001;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            font-size: 12px;
+            max-width: 300px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(0, 255, 102, 0.3);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: var(--success);
+            color: #000;
+        }
+
+        .notification.error {
+            background: var(--danger);
+        }
+
+        .notification.warning {
+            background: var(--warning);
+            color: #000;
+        }
+
+        /* Notes List */
+        .notes-list {
+            margin-top: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .note-item {
+            padding: 10px;
+            background: rgba(0, 255, 102, 0.05);
+            border-radius: 4px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(0, 255, 102, 0.1);
+            font-size: 12px;
+        }
+
+        .note-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            color: var(--accent);
+        }
+
+        .note-content {
+            color: var(--neon);
+            word-break: break-word;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* About & Help Content Styles */
+        .about-content h3, .help-content h3 {
+            color: var(--accent);
+            margin: 15px 0 10px 0;
+            font-size: 15px;
+        }
+
+        .about-content p, .help-content p {
+            color: var(--neon);
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .about-content ul, .help-content ul {
+            color: var(--neon);
+            font-size: 13px;
+            padding-left: 20px;
+            opacity: 0.9;
+        }
+
+        .about-content li, .help-content li {
+            margin-bottom: 5px;
+        }
+
+        .help-item, .faq-item {
+            background: rgba(0, 255, 102, 0.05);
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(0, 255, 102, 0.1);
+        }
+
+        .help-item h4, .faq-item h4 {
+            color: var(--neon);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        /* Donation Styles */
+        .donation-address {
+            background: rgba(0, 255, 102, 0.05);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(0, 255, 102, 0.1);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .donation-address:hover {
+            background: rgba(0, 255, 102, 0.08);
+            border-color: rgba(0, 255, 102, 0.4);
+        }
+
+        .address-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .address-icon {
+            font-size: 18px;
+        }
+
+        .address-text {
+            flex: 1;
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--neon);
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            background: rgba(0, 255, 102, 0.1);
+            border: 1px solid rgba(0, 255, 102, 0.3);
+            color: var(--neon);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(0, 255, 102, 0.2);
+        }
+
+        .sidenote {
+            font-size: 10px;
+            color: var(--accent);
+            opacity: 0.7;
+            margin-top: 5px;
+            padding: 5px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 3px;
+            display: none;
+        }
+
+        .donation-address:hover .sidenote {
+            display: block;
+        }
+
+        .donation-note {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 255, 102, 0.05);
+            border-radius: 6px;
+            border: 1px solid rgba(0, 255, 102, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix Background -->
+    <canvas id="matrix"></canvas>
+
+    <!-- Content Overlay -->
+    <div class="content-overlay">
+        <!-- Fixed Header -->
+        <header class="fixed-header">
+            <div class="header-left">
+                <div class="logo" id="headerLogo">Cloud Encryptor ⚙️</div>
+                <div class="logo-subtitle" id="headerSubtitle">⌞SΠV7737™⌝</div>
+            </div>
+            <div class="header-right">
+                <nav class="header-nav">
+                    <a href="#encrypt-section" class="nav-link" id="navEncrypt">Encrypt</a>
+                    <a href="#decrypt-section" class="nav-link" id="navDecrypt">Decrypt</a>
+                    <a href="#notes-section" class="nav-link" id="navNotes">Notes</a>
+                </nav>
+                <select class="menu-select" id="menuSelect">
+                    <option value="">More...</option>
+                    <option value="#about-section">About</option>
+                    <option value="#help-section">Help</option>
+                    <option value="#donation-section">Donation</option>
+                </select>
+                <select class="language-select" id="languageSelect">
+                    <option value="en">English</option>
+                    <option value="bn">বাংলা</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Encrypt Section -->
+            <section class="card" id="encrypt-section">
+                <h2 id="encryptTitle">🔒 Encrypt Files</h2>
+                
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label id="encryptFilesLabel">Files (drag & drop supported)</label>
+                            <input type="file" id="fileInputEncrypt" multiple style="display: none;">
+                            <div class="drag-area" id="dragAreaEncrypt">
+                                📁 Drop files here or click to select
+                            </div>
+                            <div class="file-list" id="fileListEncrypt"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label id="passphraseLabel">Passphrase</label>
+                            <input type="password" id="passInputEncrypt" placeholder="Enter strong passphrase...">
+                            <div class="password-strength">
+                                <div id="passwordStrengthText">Password strength: Not entered</div>
+                                <div class="strength-bar">
+                                    <div class="strength-fill" id="passwordStrengthBar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <div class="form-group">
+                            <label id="iterationsLabel">PBKDF2 Iterations</label>
+                            <select id="iterationsEncrypt">
+                                <option value="100000">100k (Fast)</option>
+                                <option value="250000" selected>250k (Recommended)</option>
+                                <option value="500000">500k (Secure)</option>
+                                <option value="1000000">1M (Maximum)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label id="saveLocationLabel">Save Location</label>
+                    <div class="folder-picker">
+                        <button class="btn btn-secondary" id="pickFolderBtnEncrypt">
+                            📁 Choose Folder
+                        </button>
+                        <div class="folder-name" id="folderNameEncrypt">Not selected</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" id="encryptBtn">
+                                🔒 Encrypt & Save
+                            </button>
+                            <button class="btn btn-secondary" id="cancelEncryptBtn">
+                                ❌ Cancel
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressEncrypt"></div>
+                            </div>
+                            <div class="progress-text" id="progressTextEncrypt">Ready</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Decrypt Section -->
+            <section class="card" id="decrypt-section">
+                <h2 id="decryptTitle">🔓 Decrypt Files</h2>
+                
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label id="decryptFilesLabel">Encrypted Files (.enc)</label>
+                            <input type="file" id="fileInputDecrypt" multiple accept=".enc" style="display: none;">
+                            <div class="drag-area" id="dragAreaDecrypt">
+                                📁 Drop encrypted files here
+                            </div>
+                            <div class="file-list" id="fileListDecrypt"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label id="decryptPassphraseLabel">Passphrase</label>
+                            <input type="password" id="passInputDecrypt" placeholder="Enter encryption passphrase...">
+                            <div class="error-text" id="decryptErrorText">Incorrect passphrase. Please try again.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <div class="form-group">
+                            <label id="decryptIterationsLabel">PBKDF2 Iterations</label>
+                            <select id="iterationsDecrypt">
+                                <option value="100000">100k (Fast)</option>
+                                <option value="250000" selected>250k (Recommended)</option>
+                                <option value="500000">500k (Secure)</option>
+                                <option value="1000000">1M (Maximum)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label id="decryptSaveLocationLabel">Save Location</label>
+                    <div class="folder-picker">
+                        <button class="btn btn-secondary" id="pickFolderBtnDecrypt">
+                            📁 Choose Folder
+                        </button>
+                        <div class="folder-name" id="folderNameDecrypt">Not selected</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" id="decryptBtn">
+                                🔓 Decrypt & Save
+                            </button>
+                            <button class="btn btn-secondary" id="cancelDecryptBtn">
+                                ❌ Cancel
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressDecrypt"></div>
+                            </div>
+                            <div class="progress-text" id="progressTextDecrypt">Ready</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Secure Notes Section -->
+            <section class="card" id="notes-section">
+                <h2 id="notesTitle">📝 Secure Notes</h2>
+                
+                <div class="form-group">
+                    <label id="noteTextLabel">Note</label>
+                    <textarea id="noteText" placeholder="Write your secure note here..." rows="4"></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label id="notePassLabel">Passphrase for this note</label>
+                            <input type="password" id="notePass" placeholder="Note passphrase...">
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <div class="form-group">
+                            <label id="noteExpireLabel">Auto-expire (days)</label>
+                            <select id="noteExpire">
+                                <option value="1">1 day</option>
+                                <option value="7">7 days</option>
+                                <option value="30" selected>30 days</option>
+                                <option value="90">90 days</option>
+                                <option value="0">Never</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label id="notesSaveLocationLabel">Save Location</label>
+                    <div class="folder-picker">
+                        <button class="btn btn-secondary" id="pickFolderBtnNotes">
+                            📁 Choose Folder
+                        </button>
+                        <div class="folder-name" id="folderNameNotes">Not selected</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" id="saveNoteBtn">
+                                💾 Save Note
+                            </button>
+                            <button class="btn btn-secondary" id="previewNoteBtn">
+                                👁️ Preview Notes
+                            </button>
+                            <button class="btn btn-danger" id="clearNotesBtn">
+                                🗑️ Clear All
+                            </button>
+                            <button class="btn btn-secondary" id="exportNotesBtn">
+                                📤 Export
+                            </button>
+                            <button class="btn btn-secondary" id="importNotesBtn">
+                                📥 Import
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="progress-text" id="notesStatus">0 notes saved</div>
+                    </div>
+                </div>
+
+                <div class="notes-list" id="notesList"></div>
+            </section>
+
+            <!-- About Section -->
+            <section class="card" id="about-section">
+                <h2 id="aboutTitle">ℹ️ About Cloud Encryptor</h2>
+                <div class="about-content">
+                    <div class="row">
+                        <div class="col">
+                            <h3 id="aboutFeature1">🚀 Military-Grade Encryption</h3>
+                            <p id="aboutDesc1">Cloud Encryptor is a cutting-edge web-based encryption tool that provides enterprise-level security for your sensitive files and notes. Built with AES-256-GCM encryption and PBKDF2 key derivation, it ensures your data remains protected against unauthorized access.</p>
+                            
+                            <h3 id="aboutFeature2">🛡️ Security Features</h3>
+                            <ul id="securityFeatures">
+                                <li><strong>AES-256-GCM Encryption</strong> - Military-grade encryption algorithm</li>
+                                <li><strong>PBKDF2 Key Strengthening</strong> - Up to 1 million iterations</li>
+                                <li><strong>Zero Knowledge Architecture</strong> - All processing happens locally</li>
+                                <li><strong>Secure Notes Storage</strong> - Encrypted note management</li>
+                                <li><strong>No Data Transmission</strong> - Files never leave your browser</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h3 id="aboutFeature3">👨‍💻 Development Philosophy</h3>
+                            <p id="aboutDesc2">We believe in <strong>privacy by design</strong>. Unlike cloud-based solutions, Cloud Encryptor operates entirely client-side, ensuring your encryption keys and sensitive data never touch external servers.</p>
+                            
+                            <h3 id="aboutFeature4">🔧 Technical Specifications</h3>
+                            <ul id="techSpecs">
+                                <li><strong id="spec1">Algorithm:</strong> AES-256-GCM</li>
+                                <li><strong id="spec2">Key Derivation:</strong> PBKDF2 with SHA-256</li>
+                                <li><strong id="spec3">Iterations:</strong> 100k to 1M (configurable)</li>
+                                <li><strong id="spec4">Compatibility:</strong> Modern browsers with Web Crypto API</li>
+                                <li><strong id="spec5">Version:</strong> 2.0.0</li>
+                            </ul>
+                            
+                            <h3 id="aboutFeature5">📞 Developer</h3>
+                            <p id="developerInfo"><strong>⌞ΛL HΛSSΛΠ⌝ • ⌞SΠV7737™⌝</strong><br>
+                            <span id="developerDesc">Creating secure, privacy-focused tools for the digital age.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Help Section -->
+            <section class="card" id="help-section">
+                <h2 id="helpTitle">❓ Help & Support</h2>
+                <div class="help-content">
+                    <div class="row">
+                        <div class="col">
+                            <h3 id="helpGuideTitle">📖 Quick Start Guide</h3>
+                            
+                            <div class="help-item">
+                                <h4 id="helpEncryptTitle">🔒 How to Encrypt Files</h4>
+                                <ol id="encryptSteps">
+                                    <li><strong id="step1">Select Files:</strong> <span id="step1Desc">Drag & drop or click to select files</span></li>
+                                    <li><strong id="step2">Set Passphrase:</strong> <span id="step2Desc">Use a strong, unique passphrase</span></li>
+                                    <li><strong id="step3">Choose Iterations:</strong> <span id="step3Desc">250k recommended for balance</span></li>
+                                    <li><strong id="step4">Select Folder:</strong> <span id="step4Desc">Choose save location (optional)</span></li>
+                                    <li><strong id="step5">Encrypt:</strong> <span id="step5Desc">Click "Encrypt & Save" button</span></li>
+                                </ol>
+                            </div>
+
+                            <div class="help-item">
+                                <h4 id="helpDecryptTitle">🔓 How to Decrypt Files</h4>
+                                <ol id="decryptSteps">
+                                    <li><strong id="step6">Select .enc Files:</strong> <span id="step6Desc">Choose encrypted files</span></li>
+                                    <li><strong id="step7">Enter Passphrase:</strong> <span id="step7Desc">Use exact encryption passphrase</span></li>
+                                    <li><strong id="step8">Match Iterations:</strong> <span id="step8Desc">Use same iterations as encryption</span></li>
+                                    <li><strong id="step9">Select Folder:</strong> <span id="step9Desc">Choose save location (optional)</span></li>
+                                    <li><strong id="step10">Decrypt:</strong> <span id="step10Desc">Click "Decrypt & Save" button</span></li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <div class="col">
+                            <h3 id="faqTitle">❓ Frequently Asked Questions</h3>
+                            
+                            <div class="faq-item">
+                                <h4 id="faq1">What if I forget my passphrase?</h4>
+                                <p id="faq1Answer">Files cannot be recovered without the exact passphrase. We don't store keys or passphrases. Always keep backups of your passphrases in a secure location.</p>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <h4 id="faq2">Is this tool really secure?</h4>
+                                <p id="faq2Answer">Yes! All encryption/decryption happens locally in your browser using Web Crypto API. No data is transmitted to servers. Your files never leave your device.</p>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <h4 id="faq3">Which browsers are supported?</h4>
+                                <p id="faq3Answer">Chrome, Edge, Firefox, and Safari (latest versions) with Web Crypto API support. For best performance, use updated browsers.</p>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <h4 id="faq4">Can I encrypt large files?</h4>
+                                <p id="faq4Answer">Yes, but performance depends on your device. For files over 1GB, consider splitting them. Browser memory limits may apply for very large files.</p>
+                            </div>
+
+                            <h3 id="moreHelpTitle">🆘 Need More Help?</h3>
+                            <p id="contactInfo">Contact developer on Discord: <strong>@ALHASSAN7737 | @SNV7737</strong><br>
+                            <span id="communityDesc">Join our community for support and updates.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Donation Section -->
+            <section class="card" id="donation-section">
+                <h2 id="donationTitle">💝 Support Development</h2>
+                <div class="help-content">
+                    <div class="row">
+                        <div class="col">
+                            <h3 id="donationDescTitle">🌟 Keep This Project Alive</h3>
+                            <p id="donationDesc">Cloud Encryptor is developed with passion and maintained voluntarily. Your donations help cover development costs, server maintenance, and ensure continuous updates and improvements.</p>
+                            
+                            <div class="donation-address" onclick="copyToClipboard('bc1q0snw9tpjyw5zqel28xjr903te8kgqj4nlz4a5y')">
+                                <div class="address-header">
+                                    <span class="address-icon">₿</span>
+                                    <span class="address-text">bc1q0snw9tpjyw5zqel28xjr903te8kgqj4nlz4a5y</span>
+                                    <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard('bc1q0snw9tpjyw5zqel28xjr903te8kgqj4nlz4a5y')">Copy</button>
+                                </div>
+                                <div class="sidenote" id="btcNote">Only send Bitcoin (BTC) assets to this address.</div>
+                            </div>
+
+                            <div class="donation-address" onclick="copyToClipboard('0xaE2710f6243E24e069abfb07BecD85A529620ba8')">
+                                <div class="address-header">
+                                    <span class="address-icon">💵</span>
+                                    <span class="address-text">0xaE2710f6243E24e069abfb07BecD85A529620ba8</span>
+                                    <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard('0xaE2710f6243E24e069abfb07BecD85A529620ba8')">Copy</button>
+                                </div>
+                                <div class="sidenote" id="usdtNote">Only send Tether USD (BEP20) assets to this address.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="col">
+                            <h3 id="donationImpactTitle">🚀 Your Impact</h3>
+                            <div class="help-item">
+                                <h4 id="impact1">🛠️ Continuous Development</h4>
+                                <p id="impact1Desc">Fund new features, security updates, and performance improvements.</p>
+                            </div>
+                            
+                            <div class="help-item">
+                                <h4 id="impact2">🔒 Enhanced Security</h4>
+                                <p id="impact2Desc">Support security audits and implement advanced encryption methods.</p>
+                            </div>
+                            
+                            <div class="help-item">
+                                <h4 id="impact3">📱 Multi-Platform Support</h4>
+                                <p id="impact3Desc">Develop mobile apps and desktop versions for wider accessibility.</p>
+                            </div>
+                            
+                            <div class="help-item">
+                                <h4 id="impact4">🌍 Free Access</h4>
+                                <p id="impact4Desc">Keep the tool free and accessible for everyone worldwide.</p>
+                            </div>
+
+                            <div class="donation-note">
+                                <p id="thankYouNote"><strong>Thank you for your support! 🙏</strong><br>
+                                <span id="supportDesc">Every contribution helps make digital privacy accessible to all.</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Fixed Footer -->
+        <footer class="fixed-footer">
+            <div class="footer-left" id="footerLeft">
+                🔐 Secure File Encryption Tool
+            </div>
+            <div class="footer-center">
+                <a href="https://discord.gg/fjfNCsf" target="_blank" class="footer-link">
+                    @ALHASSAN7737 | @SNV7737
+                </a>
+            </div>
+            <div class="footer-right">
+                Cloud Encryptor ⚙️ • by ⌞ΛL HΛSSΛΠ⌝
+            </div>
+        </footer>
+
+        <!-- Notification -->
+        <div class="notification" id="notification"></div>
+    </div>
+
+    <script>
+        // ==================== MATRIX RAIN - COMPLETELY FIXED ====================
+        function initMatrixRain() {
+            const canvas = document.getElementById('matrix');
+            const ctx = canvas.getContext('2d');
+
+            // Set canvas size to full window
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            const chars = "ALHASSAN7737SNV7737";
+            const fontSize = 14;
+            const columns = Math.floor(canvas.width / fontSize);
+
+            // Create drops array
+            const drops = [];
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.floor(Math.random() * -canvas.height / fontSize);
+            }
+
+            function draw() {
+                // Semi-transparent black to create trail effect
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.font = `${fontSize}px 'Share Tech Mono', monospace`;
+
+                for (let i = 0; i < drops.length; i++) {
+                    // Random character
+                    const char = chars[Math.floor(Math.random() * chars.length)];
+                    
+                    // Set color - mostly green with some variation
+                    if (Math.random() > 0.15) {
+                        ctx.fillStyle = '#0f0'; // Bright green
+                    } else {
+                        const colors = ['#0ff', '#f0f', '#ff0', '#fff'];
+                        ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+                    }
+                    
+                    // Draw character
+                    const x = i * fontSize;
+                    const y = drops[i] * fontSize;
+                    ctx.fillText(char, x, y);
+                    
+                    // Move drop down
+                    drops[i]++;
+                    
+                    // Reset drop if it goes beyond screen with random condition
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = Math.floor(Math.random() * -canvas.height / fontSize);
+                    }
+                }
+            }
+
+            // Start matrix animation
+            setInterval(draw, 33); // ~30fps
+        }
+
+        // Initialize matrix rain when page loads
+        document.addEventListener('DOMContentLoaded', initMatrixRain);
+
+        // ==================== TRANSLATIONS ====================
+        const translations = {
+            en: {
+                // Header
+                logo: "Cloud Encryptor ⚙️",
+                subtitle: "⌞SΠV7737™⌝",
+                navEncrypt: "Encrypt",
+                navDecrypt: "Decrypt", 
+                navNotes: "Notes",
+                
+                // Encrypt Section
+                encryptTitle: "🔒 Encrypt Files",
+                encryptFilesLabel: "Files (drag & drop supported)",
+                passphraseLabel: "Passphrase",
+                iterationsLabel: "PBKDF2 Iterations",
+                saveLocationLabel: "Save Location",
+                encryptButton: "🔒 Encrypt & Save",
+                cancelButton: "❌ Cancel",
+                readyStatus: "Ready",
+                encryptingStatus: "Encrypting...",
+                
+                // Decrypt Section
+                decryptTitle: "🔓 Decrypt Files",
+                decryptFilesLabel: "Encrypted Files (.enc)",
+                decryptPassphraseLabel: "Passphrase",
+                decryptIterationsLabel: "PBKDF2 Iterations",
+                decryptSaveLocationLabel: "Save Location",
+                decryptButton: "🔓 Decrypt & Save",
+                decryptingStatus: "Decrypting...",
+                
+                // Notes Section
+                notesTitle: "📝 Secure Notes",
+                noteTextLabel: "Note",
+                notePassLabel: "Passphrase for this note",
+                noteExpireLabel: "Auto-expire (days)",
+                notesSaveLocationLabel: "Save Location",
+                saveNoteButton: "💾 Save Note",
+                previewNoteButton: "👁️ Preview Notes",
+                clearNotesButton: "🗑️ Clear All",
+                exportNotesButton: "📤 Export",
+                importNotesButton: "📥 Import",
+                notesStatus: "notes saved",
+                
+                // About Section
+                aboutTitle: "ℹ️ About Cloud Encryptor",
+                aboutFeature1: "🚀 Military-Grade Encryption",
+                aboutDesc1: "Cloud Encryptor is a cutting-edge web-based encryption tool that provides enterprise-level security for your sensitive files and notes. Built with AES-256-GCM encryption and PBKDF2 key derivation, it ensures your data remains protected against unauthorized access.",
+                aboutFeature2: "🛡️ Security Features",
+                aboutFeature3: "👨‍💻 Development Philosophy", 
+                aboutDesc2: "We believe in privacy by design. Unlike cloud-based solutions, Cloud Encryptor operates entirely client-side, ensuring your encryption keys and sensitive data never touch external servers.",
+                aboutFeature4: "🔧 Technical Specifications",
+                aboutFeature5: "📞 Developer",
+                developerDesc: "Creating secure, privacy-focused tools for the digital age.",
+                
+                // Help Section
+                helpTitle: "❓ Help & Support",
+                helpGuideTitle: "📖 Quick Start Guide",
+                helpEncryptTitle: "🔒 How to Encrypt Files",
+                step1: "Select Files:",
+                step1Desc: "Drag & drop or click to select files",
+                step2: "Set Passphrase:",
+                step2Desc: "Use a strong, unique passphrase", 
+                step3: "Choose Iterations:",
+                step3Desc: "250k recommended for balance",
+                step4: "Select Folder:",
+                step4Desc: "Choose save location (optional)",
+                step5: "Encrypt:",
+                step5Desc: "Click \"Encrypt & Save\" button",
+                helpDecryptTitle: "🔓 How to Decrypt Files",
+                step6: "Select .enc Files:",
+                step6Desc: "Choose encrypted files",
+                step7: "Enter Passphrase:",
+                step7Desc: "Use exact encryption passphrase",
+                step8: "Match Iterations:",
+                step8Desc: "Use same iterations as encryption",
+                step9: "Select Folder:",
+                step9Desc: "Choose save location (optional)",
+                step10: "Decrypt:",
+                step10Desc: "Click \"Decrypt & Save\" button",
+                faqTitle: "❓ Frequently Asked Questions",
+                faq1: "What if I forget my passphrase?",
+                faq1Answer: "Files cannot be recovered without the exact passphrase. We don't store keys or passphrases. Always keep backups of your passphrases in a secure location.",
+                faq2: "Is this tool really secure?",
+                faq2Answer: "Yes! All encryption/decryption happens locally in your browser using Web Crypto API. No data is transmitted to servers. Your files never leave your device.",
+                faq3: "Which browsers are supported?",
+                faq3Answer: "Chrome, Edge, Firefox, and Safari (latest versions) with Web Crypto API support. For best performance, use updated browsers.",
+                faq4: "Can I encrypt large files?",
+                faq4Answer: "Yes, but performance depends on your device. For files over 1GB, consider splitting them. Browser memory limits may apply for very large files.",
+                moreHelpTitle: "🆘 Need More Help?",
+                communityDesc: "Join our community for support and updates.",
+                
+                // Donation Section
+                donationTitle: "💝 Support Development",
+                donationDescTitle: "🌟 Keep This Project Alive",
+                donationDesc: "Cloud Encryptor is developed with passion and maintained voluntarily. Your donations help cover development costs, server maintenance, and ensure continuous updates and improvements.",
+                donationImpactTitle: "🚀 Your Impact",
+                impact1: "🛠️ Continuous Development",
+                impact1Desc: "Fund new features, security updates, and performance improvements.",
+                impact2: "🔒 Enhanced Security", 
+                impact2Desc: "Support security audits and implement advanced encryption methods.",
+                impact3: "📱 Multi-Platform Support",
+                impact3Desc: "Develop mobile apps and desktop versions for wider accessibility.",
+                impact4: "🌍 Free Access",
+                impact4Desc: "Keep the tool free and accessible for everyone worldwide.",
+                thankYouNote: "Thank you for your support! 🙏",
+                supportDesc: "Every contribution helps make digital privacy accessible to all.",
+                btcNote: "Only send Bitcoin (BTC) assets to this address.",
+                usdtNote: "Only send Tether USD (BEP20) assets to this address.",
+                
+                // Password Strength
+                passwordStrength: "Password strength",
+                notEntered: "Not entered",
+                veryWeak: "Very weak",
+                weak: "Weak", 
+                medium: "Medium",
+                strong: "Strong",
+                veryStrong: "Very strong",
+                
+                // Notifications
+                success: "Success",
+                error: "Error",
+                noFiles: "No files selected",
+                noPassword: "Please enter passphrase",
+                encryptionSuccess: "Files encrypted successfully",
+                decryptionSuccess: "Files decrypted successfully",
+                noteSaved: "Note saved successfully",
+                notesCleared: "All notes cleared",
+                operationCancelled: "Operation cancelled",
+                wrongPassword: "Incorrect passphrase. Please try again.",
+                chooseFolder: "Choose Folder",
+                folderNotSelected: "Not selected",
+                addressCopied: "Address copied to clipboard!",
+                
+                // Footer
+                footerText: "🔐 Secure File Encryption Tool"
+            },
+            bn: {
+                logo: "ক্লাউড এনক্রিপ্টর ⚙️",
+                subtitle: "⌞SΠV7737™⌝",
+                navEncrypt: "এনক্রিপ্ট",
+                navDecrypt: "ডিক্রিপ্ট",
+                navNotes: "নোটস",
+                encryptTitle: "🔒 ফাইল এনক্রিপ্ট করুন",
+                encryptFilesLabel: "ফাইল (ড্রাগ ও ড্রপ সাপোর্টেড)",
+                passphraseLabel: "পাসফ্রেজ",
+                iterationsLabel: "PBKDF2 ইটারেশন",
+                saveLocationLabel: "সংরক্ষণের স্থান",
+                encryptButton: "🔒 এনক্রিপ্ট ও সংরক্ষণ",
+                cancelButton: "❌ বাতিল",
+                readyStatus: "প্রস্তুত",
+                encryptingStatus: "এনক্রিপ্ট করা হচ্ছে...",
+                decryptTitle: "🔓 ফাইল ডিক্রিপ্ট করুন",
+                decryptFilesLabel: "এনক্রিপ্টেড ফাইল (.enc)",
+                decryptPassphraseLabel: "পাসফ্রেজ",
+                decryptIterationsLabel: "PBKDF2 ইটারেশন",
+                decryptSaveLocationLabel: "সংরক্ষণের স্থান",
+                decryptButton: "🔓 ডিক্রিপ্ট ও সংরক্ষণ",
+                decryptingStatus: "ডিক্রিপ্ট করা হচ্ছে...",
+                notesTitle: "📝 নিরাপদ নোটস",
+                noteTextLabel: "নোট",
+                notePassLabel: "নোটের পাসফ্রেজ",
+                noteExpireLabel: "অটো এক্সপায়ার (দিন)",
+                notesSaveLocationLabel: "সংরক্ষণের স্থান",
+                saveNoteButton: "💾 নোট সংরক্ষণ",
+                previewNoteButton: "👁️ নোট প্রিভিউ",
+                clearNotesButton: "🗑️ সব মুছুন",
+                exportNotesButton: "📤 এক্সপোর্ট",
+                importNotesButton: "📥 ইমপোর্ট",
+                notesStatus: "নোট সংরক্ষিত",
+                aboutTitle: "ℹ️ Cloud Encryptor সম্পর্কে",
+                aboutFeature1: "🚀 মিলিটারি-গ্রেড এনক্রিপশন",
+                aboutDesc1: "Cloud Encryptor একটি আধুনিক ওয়েব-ভিত্তিক এনক্রিপশন টুল যা আপনার সংবেদনশীল ফাইল এবং নোটগুলির জন্য এন্টারপ্রাইজ-লেভেল সুরক্ষা প্রদান করে। AES-256-GCM এনক্রিপশন এবং PBKDF2 কী ডেরিভেশন দিয়ে তৈরি, এটি নিশ্চিত করে যে আপনার ডেটা অননুমোদিত অ্যাক্সেস থেকে সুরক্ষিত থাকে।",
+                aboutFeature2: "🛡️ সুরক্ষা বৈশিষ্ট্য",
+                aboutFeature3: "👨‍💻 ডেভেলপমেন্ট ফিলোসফি",
+                aboutDesc2: "আমরা ডিজাইন দ্বারা প্রাইভেসি-তে বিশ্ববাদী। ক্লাউড-ভিত্তিক সমাধানগুলির থেকে ভিন্ন, Cloud Encryptor সম্পূর্ণরূপে ক্লায়েন্ট-সাইডে কাজ করে, নিশ্চিত করে যে আপনার এনক্রিপশন কী এবং সংবেদনশীল ডেটা কখনও বাহ্যিক সার্ভার স্পর্শ করে না।",
+                aboutFeature4: "🔧 প্রযুক্তিগত বিবরণ",
+                aboutFeature5: "📞 ডেভেলপার",
+                developerDesc: "ডিজিটাল যুগের জন্য নিরাপদ, গোপনীয়তা-কেন্দ্রিক টুল তৈরি করা।",
+                helpTitle: "❓ সাহায্য ও সহায়তা",
+                helpGuideTitle: "📖 দ্রুত শুরু গাইড",
+                helpEncryptTitle: "🔒 কিভাবে ফাইল এনক্রিপ্ট করবেন",
+                step1: "ফাইল নির্বাচন করুন:",
+                step1Desc: "ড্রাগ ও ড্রপ অথবা ক্লিক করে ফাইল নির্বাচন করুন",
+                step2: "পাসফ্রেজ সেট করুন:",
+                step2Desc: "একটি শক্তিশালী, অনন্য পাসফ্রেজ ব্যবহার করুন",
+                step3: "ইটারেশন নির্বাচন করুন:",
+                step3Desc: "ভারসাম্যের জন্য ২৫০k সুপারিশকৃত",
+                step4: "ফোল্ডার নির্বাচন করুন:",
+                step4Desc: "সংরক্ষণের অবস্থান নির্বাচন করুন (ঐচ্ছিক)",
+                step5: "এনক্রিপ্ট করুন:",
+                step5Desc: "\"এনক্রিপ্ট ও সংরক্ষণ\" বাটনে ক্লিক করুন",
+                helpDecryptTitle: "🔓 কিভাবে ফাইল ডিক্রিপ্ট করবেন",
+                step6: ".enc ফাইল নির্বাচন করুন:",
+                step6Desc: "এনক্রিপ্টেড ফাইল নির্বাচন করুন",
+                step7: "পাসফ্রেজ লিখুন:",
+                step7Desc: "সঠিক এনক্রিপশন পাসফ্রেজ ব্যবহার করুন",
+                step8: "ইটারেশন মেলান:",
+                step8Desc: "এনক্রিপশনের মতো একই ইটারেশন ব্যবহার করুন",
+                step9: "ফোল্ডার নির্বাচন করুন:",
+                step9Desc: "সংরক্ষণের অবস্থান নির্বাচন করুন (ঐচ্ছিক)",
+                step10: "ডিক্রিপ্ট করুন:",
+                step10Desc: "\"ডিক্রিপ্ট ও সংরক্ষণ\" বাটনে ক্লিক করুন",
+                faqTitle: "❓ Frequently Asked Questions",
+                faq1: "পাসফ্রেজ ভুলে গেলে কী হবে?",
+                faq1Answer: "সঠিক পাসফ্রেজ ছাড়া ফাইলগুলি পুনরুদ্ধার করা যায় না। আমরা কী বা পাসফ্রেজ সংরক্ষণ করি না। সর্বদা আপনার পাসফ্রেজের ব্যাকআপ একটি নিরাপদ স্থানে রাখুন।",
+                faq2: "এই টুলটি কি সত্যিই নিরাপদ?",
+                faq2Answer: "হ্যাঁ! সমস্ত এনক্রিপশন/ডিক্রিপশন আপনার ব্রাউজারে স্থানীয়ভাবে ওয়েব ক্রিপ্টো API ব্যবহার করে ঘটে। কোন ডেটা সার্ভারে প্রেরণ করা হয় না। আপনার ফাইলগুলি কখনও আপনার ডিভাইস ছেড়ে যায় না।",
+                faq3: "কোন ব্রাউজারগুলি সমর্থিত?",
+                faq3Answer: "Chrome, Edge, Firefox, এবং Safari (সর্বশেষ সংস্করণ) ওয়েব ক্রিপ্টো API সমর্থন সহ। সেরা পারফরম্যান্সের জন্য, আপডেটেড ব্রাউজার ব্যবহার করুন।",
+                faq4: "আমি বড় ফাইল এনক্রিপ্ট করতে পারি?",
+                faq4Answer: "হ্যাঁ, কিন্তু পারফরম্যান্স আপনার ডিভাইসের উপর নির্ভর করে। 1GB-এর বেশি ফাইলের জন্য, সেগুলি বিভক্ত করার কথা বিবেচনা করুন। খুব বড় ফাইলের জন্য ব্রাউজার মেমরি সীমা প্রযোজ্য হতে পারে।",
+                moreHelpTitle: "🆘 আরও সাহায্য প্রয়োজন?",
+                communityDesc: "সহায়তা এবং আপডেটের জন্য আমাদের সম্প্রদায়ে যোগ দিন।",
+                donationTitle: "💝 ডেভেলপমেন্ট সাপোর্ট করুন",
+                donationDescTitle: "🌟 এই প্রজেক্টটি জীবিত রাখুন",
+                donationDesc: "Cloud Encryptor আবেগ নিয়ে তৈরি এবং স্বেচ্ছায় রক্ষণাবেক্ষণ করা হয়। আপনার অনুদান ডেভেলপমেন্ট খরচ, সার্ভার রক্ষণাবেক্ষণ কভার করতে এবং অবিচ্ছিন্ন আপডেট এবং উন্নতি নিশ্চিত করতে সহায়তা করে।",
+                donationImpactTitle: "🚀 আপনার প্রভাব",
+                impact1: "🛠️ অবিচ্ছিন্ন উন্নয়ন",
+                impact1Desc: "নতুন ফিচার, সুরক্ষা আপডেট এবং পারফরম্যান্স উন্নতি ফান্ড করুন।",
+                impact2: "🔒 উন্নত সুরক্ষা",
+                impact2Desc: "সুরক্ষা অডিট সমর্থন করুন এবং উন্নত এনক্রিপশন পদ্ধতি বাস্তবায়ন করুন।",
+                impact3: "📱 মাল্টি-প্ল্যাটফর্ম সমর্থন",
+                impact3Desc: "বিস্তৃত অ্যাক্সেসিবিলিটির জন্য মোবাইল অ্যাপ এবং ডেস্কটপ সংস্করণ তৈরি করুন।",
+                impact4: "🌍 বিনামূল্যে অ্যাক্সেস",
+                impact4Desc: "টুলটি বিশ্বব্যাপী সবার জন্য বিনামূল্যে এবং অ্যাক্সেসযোগ্য রাখুন।",
+                thankYouNote: "আপনার সমর্থনের জন্য ধন্যবাদ! 🙏",
+                supportDesc: "প্রতিটি অবদান ডিজিটাল গোপনীয়তা সবার জন্য অ্যাক্সেসযোগ্য করতে সাহায্য করে।",
+                btcNote: "শুধুমাত্র Bitcoin (BTC) অ্যাসেট এই ঠিকানায় পাঠান।",
+                usdtNote: "শুধুমাত্র Tether USD (BEP20) অ্যাসেট এই ঠিকানায় পাঠান।",
+                passwordStrength: "পাসওয়ার্ড স্ট্রেংথ",
+                notEntered: "না দেওয়া হয়েছে",
+                veryWeak: "খুব দুর্বল",
+                weak: "দুর্বল",
+                medium: "মধ্যম",
+                strong: "শক্তিশালী",
+                veryStrong: "খুব শক্তিশালী",
+                success: "সফল",
+                error: "ত্রুটি",
+                noFiles: "কোন ফাইল নির্বাচন করা হয়নি",
+                noPassword: "পাসফ্রেজ দিন",
+                encryptionSuccess: "ফাইল সফলভাবে এনক্রিপ্ট হয়েছে",
+                decryptionSuccess: "ফাইল সফলভাবে ডিক্রিপ্ট হয়েছে",
+                noteSaved: "নোট সংরক্ষণ করা হয়েছে",
+                notesCleared: "সব নোট মুছে ফেলা হয়েছে",
+                operationCancelled: "অপারেশন বাতিল করা হয়েছে",
+                wrongPassword: "ভুল পাসফ্রেজ। আবার চেষ্টা করুন।",
+                chooseFolder: "ফোল্ডার নির্বাচন",
+                folderNotSelected: "নির্বাচন করা হয়নি",
+                addressCopied: "ঠিকানা ক্লিপবোর্ডে কপি করা হয়েছে!",
+                footerText: "🔐 নিরাপদ ফাইল এনক্রিপশন টুল"
+            },
+            ar: {
+                logo: "مشفر السحابة ⚙️",
+                subtitle: "⌞SΠV7737™⌝",
+                navEncrypt: "تشفير",
+                navDecrypt: "فك التشفير",
+                navNotes: "ملاحظات",
+                encryptTitle: "🔒 تشفير الملفات",
+                encryptFilesLabel: "الملفات (السحب والإفلات مدعوم)",
+                passphraseLabel: "كلمة المرور",
+                iterationsLabel: "تكرارات PBKDF2",
+                saveLocationLabel: "موقع الحفظ",
+                encryptButton: "🔒 تشفير وحفظ",
+                cancelButton: "❌ إلغاء",
+                readyStatus: "جاهز",
+                encryptingStatus: "جاري التشفير...",
+                decryptTitle: "🔓 فك تشفير الملفات",
+                decryptFilesLabel: "الملفات المشفرة (.enc)",
+                decryptPassphraseLabel: "كلمة المرور",
+                decryptIterationsLabel: "تكرارات PBKDF2",
+                decryptSaveLocationLabel: "موقع الحفظ",
+                decryptButton: "🔓 فك التشفير والحفظ",
+                decryptingStatus: "جاري فك التشفير...",
+                notesTitle: "📝 الملاحظات الآمنة",
+                noteTextLabel: "ملاحظة",
+                notePassLabel: "كلمة مرور الملاحظة",
+                noteExpireLabel: "الانتهاء التلقائي (أيام)",
+                notesSaveLocationLabel: "موقع الحفظ",
+                saveNoteButton: "💾 حفظ الملاحظة",
+                previewNoteButton: "👁️ معاينة الملاحظات",
+                clearNotesButton: "🗑️ مسح الكل",
+                exportNotesButton: "📤 تصدير",
+                importNotesButton: "📥 استيراد",
+                notesStatus: "ملاحظة محفوظة",
+                aboutTitle: "ℹ️ حول Cloud Encryptor",
+                aboutFeature1: "🚀 تشفير عسكري المستوى",
+                aboutDesc1: "Cloud Encryptor هو أداة تشفير حديثة تعمل عبر الويب توفر أمانًا على مستوى المؤسسات لملفاتك وملاحظاتك الحساسة. مبني بتشفير AES-256-GCM واستخلاص المفاتيح PBKDF2، يضمن بقاء بياناتك محمية ضد الوصول غير المصرح به.",
+                aboutFeature2: "🛡️ ميزات الأمان",
+                aboutFeature3: "👨‍💻 فلسفة التطوير",
+                aboutDesc2: "نحن نؤمن بالخصوصية من خلال التصميم. على عكس الحلول القائمة على السحابة، يعمل Cloud Encryptor بالكامل على جانب العميل، مما يضمن أن مفاتيح التشفير والبيانات الحساسة لا تلمس الخوادم الخارجية أبدًا.",
+                aboutFeature4: "🔧 المواصفات التقنية",
+                aboutFeature5: "📞 المطور",
+                developerDesc: "إنشاء أدوات آمنة تركز على الخصوصية للعصر الرقمي.",
+                helpTitle: "❓ المساعدة والدعم",
+                helpGuideTitle: "📖 دليل البدء السريع",
+                helpEncryptTitle: "🔒 كيفية تشفير الملفات",
+                step1: "اختر الملفات:",
+                step1Desc: "اسحب وأفلت أو انقر لاختيار الملفات",
+                step2: "تعيين عبارة المرور:",
+                step2Desc: "استخدم عبارة مرور قوية وفريدة",
+                step3: "اختر التكرارات:",
+                step3Desc: "250k موصى بها للتوازن",
+                step4: "اختر المجلد:",
+                step4Desc: "اختر موقع الحفظ (اختياري)",
+                step5: "تشفير:",
+                step5Desc: "انقر على زر \"تشفير وحفظ\"",
+                helpDecryptTitle: "🔓 كيفية فك تشفير الملفات",
+                step6: "اختر ملفات .enc:",
+                step6Desc: "اختر الملفات المشفرة",
+                step7: "أدخل عبارة المرور:",
+                step7Desc: "استخدم عبارة مرور التشفير exact",
+                step8: "طابق التكرارات:",
+                step8Desc: "استخدم نفس التكرارات مثل التشفير",
+                step9: "اختر المجلد:",
+                step9Desc: "اختر موقع الحفظ (اختياري)",
+                step10: "فك التشفير:",
+                step10Desc: "انقر على زر \"فك التشفير والحفظ\"",
+                faqTitle: "❓ الأسئلة الشائعة",
+                faq1: "ماذا لو نسيت عبارة المرور؟",
+                faq1Answer: "لا يمكن استعادة الملفات بدون عبارة المرور exact. نحن لا نخزن المفاتيح أو عبارات المرور. احتفظ دائمًا بنسخ احتياطية من عبارات المرور الخاصة بك في مكان آمن.",
+                faq2: "هل هذه الأداة آمنة حقًا؟",
+                faq2Answer: "نعم! كل التشفير/فك التشفير يحدث محليًا في متصفحك باستخدام Web Crypto API. لا يتم نقل البيانات إلى الخوادم. ملفاتك never تترك جهازك.",
+                faq3: "أي المتصفحات مدعومة؟",
+                faq3Answer: "Chrome, Edge, Firefox, و Safari (أحدث الإصدارات) مع دعم Web Crypto API. للحصول على أفضل أداء، استخدم المتصفحات المحدثة.",
+                faq4: "هل يمكنني تشفير الملفات الكبيرة؟",
+                faq4Answer: "نعم، ولكن الأداء يعتمد على جهازك. للملفات التي تزيد عن 1GB، فكر في تقسيمها. قد تنطبق حدود ذاكرة المتصفح على الملفات الكبيرة جدًا.",
+                moreHelpTitle: "🆘 تحتاج إلى مزيد من المساعدة؟",
+                communityDesc: "انضم إلى مجتمعنا للحصول على الدعم والتحديثات.",
+                donationTitle: "💝 دعم التطوير",
+                donationDescTitle: "🌟 احفظ هذا المشروع حيًا",
+                donationDesc: "تم تطوير Cloud Encryptor بشغف ويتم صيانته طواعية. تساعد تبرعاتك في تغطية تكاليف التطوير وصيانة الخادم وضمان التحديثات والتحسينات المستمرة.",
+                donationImpactTitle: "🚀 تأثيرك",
+                impact1: "🛠️ التطوير المستمر",
+                impact1Desc: "مول الميزات الجديدة وتحديثات الأمان وتحسينات الأداء.",
+                impact2: "🔒 الأمان المعزز",
+                impact2Desc: "ادعم تدقيقات الأمان ونفذ طرق التشفير المتقدمة.",
+                impact3: "📱 دعم متعدد المنصات",
+                impact3Desc: "طور تطبيقات الجوال وإصدارات سطح المكتب لإتاحة وصول أوسع.",
+                impact4: "🌍 الوصول المجاني",
+                impact4Desc: "احتفظ بالأداة مجانية ومتاحة للجميع في جميع أنحاء العالم.",
+                thankYouNote: "شكرًا لدعمك! 🙏",
+                supportDesc: "كل مساعدة تجعل الخصوصية الرقمية في متناول الجميع.",
+                btcNote: "ارسل أصول Bitcoin (BTC) فقط إلى هذا العنوان.",
+                usdtNote: "ارسل أصول Tether USD (BEP20) فقط إلى هذا العنوان.",
+                passwordStrength: "قوة كلمة المرور",
+                notEntered: "لم يتم الإدخال",
+                veryWeak: "ضعيف جداً",
+                weak: "ضعيف",
+                medium: "متوسط",
+                strong: "قوي",
+                veryStrong: "قوي جداً",
+                success: "نجاح",
+                error: "خطأ",
+                noFiles: "لم يتم اختيار ملفات",
+                noPassword: "الرجاء إدخال كلمة المرور",
+                encryptionSuccess: "تم تشفير الملفات بنجاح",
+                decryptionSuccess: "تم فك تشفير الملفات بنجاح",
+                noteSaved: "تم حفظ الملاحظة بنجاح",
+                notesCleared: "تم مسح جميع الملاحظات",
+                operationCancelled: "تم إلغاء العملية",
+                wrongPassword: "كلمة مرور خاطئة. يرجى المحاولة مرة أخرى.",
+                chooseFolder: "اختر مجلد",
+                folderNotSelected: "لم يتم الاختيار",
+                addressCopied: "تم نسخ العنوان إلى الحافظة!",
+                footerText: "🔐 أداة تشفير الملفات الآمنة"
+            }
+        };
+
+        // ==================== GLOBAL VARIABLES ====================
+        let currentLang = 'en';
+        let currentOperation = null;
+        let notes = JSON.parse(localStorage.getItem('secureNotes') || '[]');
+        let folderHandles = {
+            encrypt: null,
+            decrypt: null,
+            notes: null
+        };
+
+        // ==================== UTILITY FUNCTIONS ====================
+        const utils = {
+            showNotification(message, type = 'success') {
+                const notif = document.getElementById('notification');
+                notif.textContent = message;
+                notif.className = `notification ${type}`;
+                notif.classList.add('show');
+                
+                setTimeout(() => {
+                    notif.classList.remove('show');
+                }, 3000);
+            },
+
+            formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            },
+
+            checkPasswordStrength(password) {
+                let score = 0;
+                if (password.length >= 8) score++;
+                if (/[a-z]/.test(password)) score++;
+                if (/[A-Z]/.test(password)) score++;
+                if (/[0-9]/.test(password)) score++;
+                if (/[^A-Za-z0-9]/.test(password)) score++;
+                return score;
+            },
+
+            updatePasswordStrength(password) {
+                const strength = this.checkPasswordStrength(password);
+                const strengthTexts = [
+                    translations[currentLang].notEntered,
+                    translations[currentLang].veryWeak,
+                    translations[currentLang].weak,
+                    translations[currentLang].medium,
+                    translations[currentLang].strong,
+                    translations[currentLang].veryStrong
+                ];
+                const strengthColors = ['#666', '#ff0044', '#ff4400', '#ffcc00', '#00ccff', '#00ff66'];
+                const width = strength * 20;
+                
+                document.getElementById('passwordStrengthText').textContent = 
+                    `${translations[currentLang].passwordStrength}: ${strengthTexts[strength]}`;
+                document.getElementById('passwordStrengthBar').style.width = `${width}%`;
+                document.getElementById('passwordStrengthBar').style.background = strengthColors[strength];
+            },
+
+            generateId() {
+                return Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
+            },
+
+            downloadBlob(blob, filename) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                a.click();
+                URL.revokeObjectURL(url);
+            },
+
+            async saveToFolder(blob, filename, folderHandle) {
+                if (folderHandle) {
+                    try {
+                        const fileHandle = await folderHandle.getFileHandle(filename, { create: true });
+                        const writable = await fileHandle.createWritable();
+                        await writable.write(blob);
+                        await writable.close();
+                        return true;
+                    } catch (error) {
+                        console.error('Error saving to folder:', error);
+                        return false;
+                    }
+                }
+                return false;
+            }
+        };
+
+        // ==================== INSTANT LANGUAGE SWITCHER ====================
+        function updateAllTexts() {
+            const t = translations[currentLang];
+            
+            // Update ALL text elements instantly
+            document.getElementById('headerLogo').textContent = t.logo;
+            document.getElementById('headerSubtitle').textContent = t.subtitle;
+            
+            // Navigation
+            document.getElementById('navEncrypt').textContent = t.navEncrypt;
+            document.getElementById('navDecrypt').textContent = t.navDecrypt;
+            document.getElementById('navNotes').textContent = t.navNotes;
+            
+            // Encrypt section
+            document.getElementById('encryptTitle').textContent = t.encryptTitle;
+            document.getElementById('encryptFilesLabel').textContent = t.encryptFilesLabel;
+            document.getElementById('passphraseLabel').textContent = t.passphraseLabel;
+            document.getElementById('iterationsLabel').textContent = t.iterationsLabel;
+            document.getElementById('saveLocationLabel').textContent = t.saveLocationLabel;
+            document.getElementById('encryptBtn').textContent = t.encryptButton;
+            document.getElementById('cancelEncryptBtn').textContent = t.cancelButton;
+            document.getElementById('progressTextEncrypt').textContent = t.readyStatus;
+            
+            // Decrypt section
+            document.getElementById('decryptTitle').textContent = t.decryptTitle;
+            document.getElementById('decryptFilesLabel').textContent = t.decryptFilesLabel;
+            document.getElementById('decryptPassphraseLabel').textContent = t.decryptPassphraseLabel;
+            document.getElementById('decryptIterationsLabel').textContent = t.decryptIterationsLabel;
+            document.getElementById('decryptSaveLocationLabel').textContent = t.decryptSaveLocationLabel;
+            document.getElementById('decryptBtn').textContent = t.decryptButton;
+            document.getElementById('cancelDecryptBtn').textContent = t.cancelButton;
+            document.getElementById('progressTextDecrypt').textContent = t.readyStatus;
+            
+            // Notes section
+            document.getElementById('notesTitle').textContent = t.notesTitle;
+            document.getElementById('noteTextLabel').textContent = t.noteTextLabel;
+            document.getElementById('notePassLabel').textContent = t.notePassLabel;
+            document.getElementById('noteExpireLabel').textContent = t.noteExpireLabel;
+            document.getElementById('notesSaveLocationLabel').textContent = t.notesSaveLocationLabel;
+            document.getElementById('saveNoteBtn').textContent = t.saveNoteButton;
+            document.getElementById('previewNoteBtn').textContent = t.previewNoteButton;
+            document.getElementById('clearNotesBtn').textContent = t.clearNotesButton;
+            document.getElementById('exportNotesBtn').textContent = t.exportNotesButton;
+            document.getElementById('importNotesBtn').textContent = t.importNotesButton;
+            
+            // About section
+            document.getElementById('aboutTitle').textContent = t.aboutTitle;
+            document.getElementById('aboutFeature1').textContent = t.aboutFeature1;
+            document.getElementById('aboutDesc1').textContent = t.aboutDesc1;
+            document.getElementById('aboutFeature2').textContent = t.aboutFeature2;
+            document.getElementById('aboutFeature3').textContent = t.aboutFeature3;
+            document.getElementById('aboutDesc2').textContent = t.aboutDesc2;
+            document.getElementById('aboutFeature4').textContent = t.aboutFeature4;
+            document.getElementById('aboutFeature5').textContent = t.aboutFeature5;
+            document.getElementById('developerDesc').textContent = t.developerDesc;
+            
+            // Help section
+            document.getElementById('helpTitle').textContent = t.helpTitle;
+            document.getElementById('helpGuideTitle').textContent = t.helpGuideTitle;
+            document.getElementById('helpEncryptTitle').textContent = t.helpEncryptTitle;
+            document.getElementById('step1').textContent = t.step1;
+            document.getElementById('step1Desc').textContent = t.step1Desc;
+            document.getElementById('step2').textContent = t.step2;
+            document.getElementById('step2Desc').textContent = t.step2Desc;
+            document.getElementById('step3').textContent = t.step3;
+            document.getElementById('step3Desc').textContent = t.step3Desc;
+            document.getElementById('step4').textContent = t.step4;
+            document.getElementById('step4Desc').textContent = t.step4Desc;
+            document.getElementById('step5').textContent = t.step5;
+            document.getElementById('step5Desc').textContent = t.step5Desc;
+            document.getElementById('helpDecryptTitle').textContent = t.helpDecryptTitle;
+            document.getElementById('step6').textContent = t.step6;
+            document.getElementById('step6Desc').textContent = t.step6Desc;
+            document.getElementById('step7').textContent = t.step7;
+            document.getElementById('step7Desc').textContent = t.step7Desc;
+            document.getElementById('step8').textContent = t.step8;
+            document.getElementById('step8Desc').textContent = t.step8Desc;
+            document.getElementById('step9').textContent = t.step9;
+            document.getElementById('step9Desc').textContent = t.step9Desc;
+            document.getElementById('step10').textContent = t.step10;
+            document.getElementById('step10Desc').textContent = t.step10Desc;
+            document.getElementById('faqTitle').textContent = t.faqTitle;
+            document.getElementById('faq1').textContent = t.faq1;
+            document.getElementById('faq1Answer').textContent = t.faq1Answer;
+            document.getElementById('faq2').textContent = t.faq2;
+            document.getElementById('faq2Answer').textContent = t.faq2Answer;
+            document.getElementById('faq3').textContent = t.faq3;
+            document.getElementById('faq3Answer').textContent = t.faq3Answer;
+            document.getElementById('faq4').textContent = t.faq4;
+            document.getElementById('faq4Answer').textContent = t.faq4Answer;
+            document.getElementById('moreHelpTitle').textContent = t.moreHelpTitle;
+            document.getElementById('communityDesc').textContent = t.communityDesc;
+            
+            // Donation section
+            document.getElementById('donationTitle').textContent = t.donationTitle;
+            document.getElementById('donationDescTitle').textContent = t.donationDescTitle;
+            document.getElementById('donationDesc').textContent = t.donationDesc;
+            document.getElementById('donationImpactTitle').textContent = t.donationImpactTitle;
+            document.getElementById('impact1').textContent = t.impact1;
+            document.getElementById('impact1Desc').textContent = t.impact1Desc;
+            document.getElementById('impact2').textContent = t.impact2;
+            document.getElementById('impact2Desc').textContent = t.impact2Desc;
+            document.getElementById('impact3').textContent = t.impact3;
+            document.getElementById('impact3Desc').textContent = t.impact3Desc;
+            document.getElementById('impact4').textContent = t.impact4;
+            document.getElementById('impact4Desc').textContent = t.impact4Desc;
+            document.getElementById('thankYouNote').innerHTML = `<strong>${t.thankYouNote}</strong><br><span>${t.supportDesc}</span>`;
+            document.getElementById('btcNote').textContent = t.btcNote;
+            document.getElementById('usdtNote').textContent = t.usdtNote;
+            
+            // Folder pickers
+            document.getElementById('pickFolderBtnEncrypt').textContent = t.chooseFolder;
+            document.getElementById('pickFolderBtnDecrypt').textContent = t.chooseFolder;
+            document.getElementById('pickFolderBtnNotes').textContent = t.chooseFolder;
+            
+            // Footer
+            document.getElementById('footerLeft').textContent = t.footerText;
+            
+            // Update folder names if not selected
+            if (!folderHandles.encrypt) document.getElementById('folderNameEncrypt').textContent = t.folderNotSelected;
+            if (!folderHandles.decrypt) document.getElementById('folderNameDecrypt').textContent = t.folderNotSelected;
+            if (!folderHandles.notes) document.getElementById('folderNameNotes').textContent = t.folderNotSelected;
+            
+            // Update drag areas and placeholders
+            updateUITexts();
+            
+            // Update password strength text
+            utils.updatePasswordStrength(document.getElementById('passInputEncrypt').value);
+            
+            // Update notes display
+            notesManager.updateNotesDisplay();
+        }
+
+        function updateUITexts() {
+            const dragEncrypt = document.getElementById('dragAreaEncrypt');
+            const dragDecrypt = document.getElementById('dragAreaDecrypt');
+            const passEncrypt = document.getElementById('passInputEncrypt');
+            const passDecrypt = document.getElementById('passInputDecrypt');
+            const noteText = document.getElementById('noteText');
+            const notePass = document.getElementById('notePass');
+            const decryptError = document.getElementById('decryptErrorText');
+
+            if (currentLang === 'en') {
+                dragEncrypt.innerHTML = '📁 Drop files here or click to select';
+                dragDecrypt.innerHTML = '📁 Drop encrypted files here';
+                passEncrypt.placeholder = 'Enter strong passphrase...';
+                passDecrypt.placeholder = 'Enter encryption passphrase...';
+                noteText.placeholder = 'Write your secure note here...';
+                notePass.placeholder = 'Note passphrase...';
+                decryptError.textContent = 'Incorrect passphrase. Please try again.';
+            } else if (currentLang === 'bn') {
+                dragEncrypt.innerHTML = '📁 ফাইল এখানে ড্রপ করুন অথবা ক্লিক করুন';
+                dragDecrypt.innerHTML = '📁 এনক্রিপ্টেড ফাইল এখানে ড্রপ করুন';
+                passEncrypt.placeholder = 'শক্তিশালী পাসফ্রেজ লিখুন...';
+                passDecrypt.placeholder = 'এনক্রিপশন পাসফ্রেজ লিখুন...';
+                noteText.placeholder = 'আপনার নিরাপদ নোট এখানে লিখুন...';
+                notePass.placeholder = 'নোটের পাসফ্রেজ...';
+                decryptError.textContent = 'ভুল পাসফ্রেজ। আবার চেষ্টা করুন।';
+            } else {
+                dragEncrypt.innerHTML = '📁 اسحب الملفات هنا أو انقر للاختيار';
+                dragDecrypt.innerHTML = '📁 اسحب الملفات المشفرة هنا';
+                passEncrypt.placeholder = 'أدخل كلمة مرور قوية...';
+                passDecrypt.placeholder = 'أدخل كلمة مرور التشفير...';
+                noteText.placeholder = 'اكتب ملاحظتك الآمنة هنا...';
+                notePass.placeholder = 'كلمة مرور الملاحظة...';
+                decryptError.textContent = 'كلمة مرور خاطئة. يرجى المحاولة مرة أخرى.';
+            }
+        }
+
+        // ==================== CRYPTO MANAGER ====================
+        const cryptoManager = {
+            enc: new TextEncoder(),
+            dec: new TextDecoder(),
+
+            async deriveKey(password, salt, iterations) {
+                const keyMaterial = await window.crypto.subtle.importKey(
+                    'raw',
+                    this.enc.encode(password),
+                    { name: 'PBKDF2' },
+                    false,
+                    ['deriveKey']
+                );
+
+                return window.crypto.subtle.deriveKey(
+                    {
+                        name: 'PBKDF2',
+                        salt: salt,
+                        iterations: iterations,
+                        hash: 'SHA-256'
+                    },
+                    keyMaterial,
+                    { name: 'AES-GCM', length: 256 },
+                    false,
+                    ['encrypt', 'decrypt']
+                );
+            },
+
+            randomBytes(length) {
+                const array = new Uint8Array(length);
+                window.crypto.getRandomValues(array);
+                return array;
+            },
+
+            async encryptFile(file, password, iterations, onProgress) {
+                if (currentOperation?.cancelled) throw new Error('Cancelled');
+
+                if (onProgress) onProgress(0, 'Generating salt and key...');
+                
+                const salt = this.randomBytes(16);
+                const iv = this.randomBytes(12);
+                const key = await this.deriveKey(password, salt, iterations);
+                
+                if (currentOperation?.cancelled) throw new Error('Cancelled');
+                if (onProgress) onProgress(30, 'Reading file...');
+                const fileData = await file.arrayBuffer();
+                
+                if (currentOperation?.cancelled) throw new Error('Cancelled');
+                if (onProgress) onProgress(60, 'Encrypting...');
+                const encryptedData = await window.crypto.subtle.encrypt(
+                    { name: 'AES-GCM', iv: iv },
+                    key,
+                    fileData
+                );
+                
+                if (currentOperation?.cancelled) throw new Error('Cancelled');
+                if (onProgress) onProgress(90, 'Creating file...');
+                
+                // Header + salt + IV + encrypted data
+                const header = this.enc.encode('CENCv1');
+                const result = new Uint8Array(header.length + salt.length + iv.length + encryptedData.byteLength);
+                result.set(header, 0);
+                result.set(salt, header.length);
+                result.set(iv, header.length + salt.length);
+                result.set(new Uint8Array(encryptedData), header.length + salt.length + iv.length);
+                
+                if (onProgress) onProgress(100, 'Completed');
+                
+                return new Blob([result], { type: 'application/octet-stream' });
+            },
+
+            async decryptFile(file, password, iterations, onProgress) {
+                if (currentOperation?.cancelled) throw new Error('Cancelled');
+
+                if (onProgress) onProgress(0, 'Verifying file...');
+                
+                const fileData = new Uint8Array(await file.arrayBuffer());
+                const header = fileData.slice(0, 6);
+                
+                if (this.dec.decode(header) !== 'CENCv1') {
+                    throw new Error('Invalid file format');
+                }
+                
+                const salt = fileData.slice(6, 22);
+                const iv = fileData.slice(22, 34);
+                const encryptedData = fileData.slice(34);
+                
+                if (currentOperation?.cancelled) throw new Error('Cancelled');
+                if (onProgress) onProgress(30, 'Generating key...');
+                const key = await this.deriveKey(password, salt, iterations);
+                
+                if (currentOperation?.cancelled) throw new Error('Cancelled');
+                if (onProgress) onProgress(60, 'Decrypting...');
+                const decryptedData = await window.crypto.subtle.decrypt(
+                    { name: 'AES-GCM', iv: iv },
+                    key,
+                    encryptedData
+                );
+                
+                if (onProgress) onProgress(90, 'Creating file...');
+                if (onProgress) onProgress(100, 'Completed');
+                
+                return new Blob([decryptedData]);
+            },
+
+            async encryptText(text, password) {
+                const salt = this.randomBytes(16);
+                const iv = this.randomBytes(12);
+                const key = await this.deriveKey(password, salt, 250000);
+                
+                const encryptedData = await window.crypto.subtle.encrypt(
+                    { name: 'AES-GCM', iv: iv },
+                    key,
+                    this.enc.encode(text)
+                );
+                
+                return {
+                    data: Array.from(new Uint8Array(encryptedData)),
+                    salt: Array.from(salt),
+                    iv: Array.from(iv),
+                    timestamp: Date.now()
+                };
+            },
+
+            async decryptText(encryptedNote, password) {
+                const salt = new Uint8Array(encryptedNote.salt);
+                const iv = new Uint8Array(encryptedNote.iv);
+                const encryptedData = new Uint8Array(encryptedNote.data);
+                
+                const key = await this.deriveKey(password, salt, 250000);
+                const decryptedData = await window.crypto.subtle.decrypt(
+                    { name: 'AES-GCM', iv: iv },
+                    key,
+                    encryptedData
+                );
+                
+                return this.dec.decode(decryptedData);
+            }
+        };
+
+        // ==================== NOTES MANAGER ====================
+        const notesManager = {
+            saveNotes() {
+                localStorage.setItem('secureNotes', JSON.stringify(notes));
+                this.updateNotesDisplay();
+            },
+
+            updateNotesDisplay() {
+                const notesList = document.getElementById('notesList');
+                const notesStatus = document.getElementById('notesStatus');
+                const t = translations[currentLang];
+                
+                notesStatus.textContent = `${notes.length} ${t.notesStatus}`;
+                
+                if (notes.length === 0) {
+                    notesList.innerHTML = '<div style="text-align: center; color: var(--accent); padding: 20px;">No notes saved</div>';
+                    return;
+                }
+                
+                notesList.innerHTML = notes.map(note => `
+                    <div class="note-item">
+                        <div class="note-header">
+                            <span>Note #${note.id.substr(-6)}</span>
+                            <span>${new Date(note.timestamp).toLocaleDateString()}</span>
+                        </div>
+                        <div class="note-content">
+                            ${note.preview || 'Encrypted content...'}
+                        </div>
+                    </div>
+                `).join('');
+            },
+
+            async addNote(text, password, expireDays) {
+                try {
+                    const encryptedNote = await cryptoManager.encryptText(text, password);
+                    const note = {
+                        id: utils.generateId(),
+                        ...encryptedNote,
+                        expireDays: parseInt(expireDays),
+                        preview: text.length > 50 ? text.substr(0, 50) + '...' : text
+                    };
+                    
+                    notes.push(note);
+                    this.saveNotes();
+                    
+                    // Save to folder if selected
+                    if (folderHandles.notes) {
+                        const noteData = JSON.stringify(note, null, 2);
+                        const blob = new Blob([noteData], { type: 'application/json' });
+                        await utils.saveToFolder(blob, `secure-note-${note.id}.json`, folderHandles.notes);
+                    }
+                    
+                    return true;
+                } catch (error) {
+                    throw new Error('Failed to encrypt note');
+                }
+            },
+
+            async decryptNote(noteId, password) {
+                const note = notes.find(n => n.id === noteId);
+                if (!note) throw new Error('Note not found');
+                
+                try {
+                    const decryptedText = await cryptoManager.decryptText(note, password);
+                    return decryptedText;
+                } catch (error) {
+                    throw new Error('Failed to decrypt note - wrong password?');
+                }
+            },
+
+            clearExpiredNotes() {
+                const now = Date.now();
+                notes = notes.filter(note => {
+                    if (note.expireDays === 0) return true;
+                    const expireTime = note.timestamp + (note.expireDays * 24 * 60 * 60 * 1000);
+                    return expireTime > now;
+                });
+                this.saveNotes();
+            },
+
+            clearAllNotes() {
+                notes = [];
+                this.saveNotes();
+            },
+
+            exportNotes() {
+                const dataStr = JSON.stringify(notes, null, 2);
+                const blob = new Blob([dataStr], { type: 'application/json' });
+                utils.downloadBlob(blob, `secure-notes-${Date.now()}.json`);
+            },
+
+            importNotes(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        try {
+                            const importedNotes = JSON.parse(e.target.result);
+                            if (Array.isArray(importedNotes)) {
+                                notes = [...notes, ...importedNotes];
+                                this.saveNotes();
+                                resolve();
+                            } else {
+                                reject(new Error('Invalid notes file'));
+                            }
+                        } catch (error) {
+                            reject(new Error('Invalid JSON file'));
+                        }
+                    };
+                    reader.onerror = () => reject(new Error('Failed to read file'));
+                    reader.readAsText(file);
+                });
+            }
+        };
+
+        // ==================== FILE MANAGER ====================
+        const fileManager = {
+            updateFileList(files, listElement) {
+                listElement.innerHTML = '';
+                Array.from(files).forEach(file => {
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-item';
+                    fileItem.innerHTML = `
+                        <div class="file-name">${file.name}</div>
+                        <div class="file-size">${utils.formatFileSize(file.size)}</div>
+                    `;
+                    listElement.appendChild(fileItem);
+                });
+            },
+
+            initDragAndDrop(dragArea, fileInput, fileList) {
+                dragArea.addEventListener('click', () => fileInput.click());
+                
+                dragArea.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    dragArea.classList.add('dragover');
+                });
+
+                dragArea.addEventListener('dragleave', () => {
+                    dragArea.classList.remove('dragover');
+                });
+
+                dragArea.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    dragArea.classList.remove('dragover');
+                    const files = e.dataTransfer.files;
+                    fileInput.files = files;
+                    this.updateFileList(files, fileList);
+                });
+
+                fileInput.addEventListener('change', (e) => {
+                    this.updateFileList(e.target.files, fileList);
+                });
+            }
+        };
+
+        // ==================== EVENT HANDLERS ====================
+        const eventHandlers = {
+            init() {
+                // Language selector - INSTANT CHANGE
+                document.getElementById('languageSelect').addEventListener('change', (e) => {
+                    currentLang = e.target.value;
+                    updateAllTexts(); // INSTANT language update
+                    utils.showNotification(`Language changed to ${e.target.options[e.target.selectedIndex].text}`, 'success');
+                });
+                
+                // Menu selector
+                document.getElementById('menuSelect').addEventListener('change', (e) => {
+                    if (e.target.value) {
+                        document.querySelector(e.target.value).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        e.target.value = "";
+                    }
+                });
+                
+                // Password strength
+                document.getElementById('passInputEncrypt').addEventListener('input', (e) => {
+                    utils.updatePasswordStrength(e.target.value);
+                });
+
+                // Drag and drop
+                fileManager.initDragAndDrop(
+                    document.getElementById('dragAreaEncrypt'),
+                    document.getElementById('fileInputEncrypt'),
+                    document.getElementById('fileListEncrypt')
+                );
+
+                fileManager.initDragAndDrop(
+                    document.getElementById('dragAreaDecrypt'),
+                    document.getElementById('fileInputDecrypt'),
+                    document.getElementById('fileListDecrypt')
+                );
+
+                // Folder pickers
+                document.getElementById('pickFolderBtnEncrypt').addEventListener('click', () => this.pickFolder('encrypt'));
+                document.getElementById('pickFolderBtnDecrypt').addEventListener('click', () => this.pickFolder('decrypt'));
+                document.getElementById('pickFolderBtnNotes').addEventListener('click', () => this.pickFolder('notes'));
+
+                // Encrypt/Decrypt buttons
+                document.getElementById('encryptBtn').addEventListener('click', this.handleEncrypt);
+                document.getElementById('decryptBtn').addEventListener('click', this.handleDecrypt);
+                document.getElementById('cancelEncryptBtn').addEventListener('click', () => this.cancelOperation('encrypt'));
+                document.getElementById('cancelDecryptBtn').addEventListener('click', () => this.cancelOperation('decrypt'));
+
+                // Notes buttons
+                document.getElementById('saveNoteBtn').addEventListener('click', this.handleSaveNote);
+                document.getElementById('previewNoteBtn').addEventListener('click', this.handlePreviewNotes);
+                document.getElementById('clearNotesBtn').addEventListener('click', this.handleClearNotes);
+                document.getElementById('exportNotesBtn').addEventListener('click', () => notesManager.exportNotes());
+                document.getElementById('importNotesBtn').addEventListener('click', this.handleImportNotes);
+
+                // Initialize
+                utils.updatePasswordStrength('');
+                notesManager.updateNotesDisplay();
+                notesManager.clearExpiredNotes();
+                
+                // Set initial language
+                updateAllTexts();
+                
+                // Show welcome notification
+                setTimeout(() => {
+                    utils.showNotification('Cloud Encryptor Ready - Secure your files!', 'success');
+                }, 1000);
+            },
+
+            async pickFolder(type) {
+                if (!window.showDirectoryPicker) {
+                    utils.showNotification('Folder picker not supported in this browser', 'error');
+                    return;
+                }
+
+                try {
+                    const handle = await window.showDirectoryPicker();
+                    folderHandles[type] = handle;
+                    document.getElementById(`folderName${type.charAt(0).toUpperCase() + type.slice(1)}`).textContent = handle.name;
+                    utils.showNotification(`Folder selected: ${handle.name}`, 'success');
+                } catch (error) {
+                    if (error.name !== 'AbortError') {
+                        utils.showNotification('Failed to select folder', 'error');
+                    }
+                }
+            },
+
+            async handleEncrypt() {
+                const files = document.getElementById('fileInputEncrypt').files;
+                const password = document.getElementById('passInputEncrypt').value;
+                const iterations = parseInt(document.getElementById('iterationsEncrypt').value);
+                const t = translations[currentLang];
+
+                if (files.length === 0) {
+                    utils.showNotification(t.noFiles, 'error');
+                    return;
+                }
+
+                if (!password) {
+                    utils.showNotification(t.noPassword, 'error');
+                    return;
+                }
+
+                const btn = document.getElementById('encryptBtn');
+                const progressBar = document.getElementById('progressEncrypt');
+                const progressText = document.getElementById('progressTextEncrypt');
+
+                try {
+                    btn.disabled = true;
+                    currentOperation = { cancelled: false };
+
+                    for (let i = 0; i < files.length; i++) {
+                        if (currentOperation.cancelled) break;
+
+                        const file = files[i];
+                        const encryptedBlob = await cryptoManager.encryptFile(
+                            file,
+                            password,
+                            iterations,
+                            (progress, status) => {
+                                progressBar.style.width = `${progress}%`;
+                                progressText.textContent = 
+                                    `${file.name}: ${status} (${i + 1}/${files.length})`;
+                            }
+                        );
+
+                        // Try to save to folder first, then download if no folder selected
+                        const savedToFolder = await utils.saveToFolder(encryptedBlob, file.name + '.enc', folderHandles.encrypt);
+                        if (!savedToFolder) {
+                            utils.downloadBlob(encryptedBlob, file.name + '.enc');
+                        }
+                    }
+
+                    if (!currentOperation.cancelled) {
+                        utils.showNotification(t.encryptionSuccess, 'success');
+                    }
+                } catch (error) {
+                    if (error.message !== 'Cancelled') {
+                        utils.showNotification(error.message, 'error');
+                    }
+                } finally {
+                    btn.disabled = false;
+                    progressBar.style.width = '0%';
+                    progressText.textContent = t.readyStatus;
+                    currentOperation = null;
+                }
+            },
+
+            async handleDecrypt() {
+                const files = document.getElementById('fileInputDecrypt').files;
+                const password = document.getElementById('passInputDecrypt').value;
+                const iterations = parseInt(document.getElementById('iterationsDecrypt').value);
+                const errorText = document.getElementById('decryptErrorText');
+                const t = translations[currentLang];
+
+                // Hide error text initially
+                errorText.style.display = 'none';
+
+                if (files.length === 0) {
+                    utils.showNotification(t.noFiles, 'error');
+                    return;
+                }
+
+                if (!password) {
+                    utils.showNotification(t.noPassword, 'error');
+                    return;
+                }
+
+                const btn = document.getElementById('decryptBtn');
+                const progressBar = document.getElementById('progressDecrypt');
+                const progressText = document.getElementById('progressTextDecrypt');
+
+                try {
+                    btn.disabled = true;
+                    currentOperation = { cancelled: false };
+
+                    for (let i = 0; i < files.length; i++) {
+                        if (currentOperation.cancelled) break;
+
+                        const file = files[i];
+                        const decryptedBlob = await cryptoManager.decryptFile(
+                            file,
+                            password,
+                            iterations,
+                            (progress, status) => {
+                                progressBar.style.width = `${progress}%`;
+                                progressText.textContent = 
+                                    `${file.name}: ${status} (${i + 1}/${files.length})`;
+                            }
+                        );
+
+                        const originalName = file.name.replace(/\.enc$/i, '');
+                        
+                        // Try to save to folder first, then download if no folder selected
+                        const savedToFolder = await utils.saveToFolder(decryptedBlob, originalName, folderHandles.decrypt);
+                        if (!savedToFolder) {
+                            utils.downloadBlob(decryptedBlob, originalName);
+                        }
+                    }
+
+                    if (!currentOperation.cancelled) {
+                        utils.showNotification(t.decryptionSuccess, 'success');
+                    }
+                } catch (error) {
+                    if (error.message !== 'Cancelled') {
+                        if (error.message.includes('decrypt') || error.message.includes('password') || error.message.includes('key')) {
+                            // Show the error text for wrong password
+                            errorText.style.display = 'block';
+                            utils.showNotification(t.wrongPassword, 'error');
+                        } else {
+                            utils.showNotification(error.message, 'error');
+                        }
+                    }
+                } finally {
+                    btn.disabled = false;
+                    progressBar.style.width = '0%';
+                    progressText.textContent = t.readyStatus;
+                    currentOperation = null;
+                }
+            },
+
+            cancelOperation(type) {
+                const t = translations[currentLang];
+                if (currentOperation) {
+                    currentOperation.cancelled = true;
+                    utils.showNotification(t.operationCancelled, 'warning');
+                }
+            },
+
+            async handleSaveNote() {
+                const text = document.getElementById('noteText').value;
+                const password = document.getElementById('notePass').value;
+                const expireDays = document.getElementById('noteExpire').value;
+                const t = translations[currentLang];
+
+                if (!text.trim()) {
+                    utils.showNotification('Please enter note text', 'error');
+                    return;
+                }
+
+                if (!password) {
+                    utils.showNotification('Please enter note passphrase', 'error');
+                    return;
+                }
+
+                try {
+                    await notesManager.addNote(text, password, expireDays);
+                    utils.showNotification(t.noteSaved, 'success');
+                    
+                    // Clear form
+                    document.getElementById('noteText').value = '';
+                    document.getElementById('notePass').value = '';
+                } catch (error) {
+                    utils.showNotification(error.message, 'error');
+                }
+            },
+
+            async handlePreviewNotes() {
+                const password = document.getElementById('notePass').value;
+                const t = translations[currentLang];
+                
+                if (!password) {
+                    utils.showNotification('Please enter note passphrase to preview', 'error');
+                    return;
+                }
+
+                if (notes.length === 0) {
+                    utils.showNotification('No notes to preview', 'warning');
+                    return;
+                }
+
+                let previewText = 'DECRYPTED NOTES:\n\n';
+                let decryptedCount = 0;
+
+                for (const note of notes) {
+                    try {
+                        const decrypted = await notesManager.decryptNote(note.id, password);
+                        previewText += `=== Note #${note.id.substr(-6)} ===\n`;
+                        previewText += `Created: ${new Date(note.timestamp).toLocaleString()}\n`;
+                        previewText += `Content: ${decrypted}\n\n`;
+                        decryptedCount++;
+                    } catch (error) {
+                        previewText += `=== Note #${note.id.substr(-6)} ===\n`;
+                        previewText += `Status: DECRYPTION FAILED\n\n`;
+                    }
+                }
+
+                previewText += `\nSuccessfully decrypted: ${decryptedCount}/${notes.length} notes`;
+
+                // Show in new window
+                const previewWindow = window.open('', '_blank');
+                previewWindow.document.write(`
+                    <html>
+                        <head>
+                            <title>Decrypted Notes</title>
+                            <style>
+                                body { 
+                                    font-family: 'Courier New', monospace; 
+                                    background: #000; 
+                                    color: #0f0; 
+                                    padding: 20px;
+                                    white-space: pre-wrap;
+                                }
+                            </style>
+                        </head>
+                        <body>${previewText}</body>
+                    </html>
+                `);
+            },
+
+            handleClearNotes() {
+                const t = translations[currentLang];
+                if (confirm('Are you sure you want to delete all notes? This action cannot be undone.')) {
+                    notesManager.clearAllNotes();
+                    utils.showNotification(t.notesCleared, 'success');
+                }
+            },
+
+            handleImportNotes() {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.json';
+                input.onchange = async (e) => {
+                    const file = e.target.files[0];
+                    if (!file) return;
+
+                    try {
+                        await notesManager.importNotes(file);
+                        utils.showNotification('Notes imported successfully', 'success');
+                    } catch (error) {
+                        utils.showNotification(error.message, 'error');
+                    }
+                };
+                input.click();
+            }
+        };
+
+        // ==================== COPY TO CLIPBOARD FUNCTION ====================
+        function copyToClipboard(text) {
+            const t = translations[currentLang];
+            navigator.clipboard.writeText(text).then(() => {
+                utils.showNotification(t.addressCopied, 'success');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                utils.showNotification(t.addressCopied, 'success');
+            });
+        }
+
+        // ==================== INITIALIZATION ====================
+        function initApp() {
+            eventHandlers.init();
+        }
+
+        // Start the app
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>

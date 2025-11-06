@@ -1,0 +1,126 @@
+{
+  "name": "cloudencryptor",
+  "version": "2.0.0",
+  "description": "Secure File Encryption Tool with Military-Grade AES-256-GCM - By AL HASSAN | SNV7737",
+  "main": "main.js",
+  "homepage": "https://github.com/snv7737",
+  "scripts": {
+    "start": "electron .",
+    "dev": "set NODE_ENV=development && electron .",
+    "build-windows": "electron-builder --win",
+    "build-portable": "electron-builder --win portable",
+    "build-installer": "electron-builder --win nsis",
+    "build-all": "electron-builder -wml",
+    "dist": "electron-builder",
+    "pack": "electron-builder --dir",
+    "clean": "rmdir /s /q node_modules && rmdir /s /q dist"
+  },
+  "keywords": [
+    "encryption",
+    "security",
+    "file-encryption",
+    "aes-256",
+    "cloud-storage",
+    "privacy",
+    "crypto",
+    "secure-notes",
+    "snv7737",
+    "al-hassan",
+    "cloudencryptor"
+  ],
+  "author": {
+    "name": "AL HASSAN | SNV7737",
+    "email": "snv7737@github.com",
+    "url": "https://github.com/snv7737"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^22.3.6",
+    "electron-builder": "^24.6.4"
+  },
+  "build": {
+    "appId": "com.snv7737.cloudencryptor",
+    "productName": "Cloud Encryptor",
+    "copyright": "Copyright © 2024 SNV7737",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "files": [
+      "**/*",
+      "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+      "!**/node_modules/*.d.ts",
+      "!**/node_modules/.bin",
+      "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
+      "!.editorconfig",
+      "!**/._*",
+      "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+      "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}",
+      "!**/{appveyor.yml,.travis.yml,circle.yml}",
+      "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}",
+      "!*.md",
+      "!dist",
+      "!.git"
+    ],
+    "extraResources": [
+      {
+        "from": "assets",
+        "to": "assets",
+        "filter": ["**/*"]
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "publisherName": "SNV7737",
+      "verifyUpdateCodeSignature": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Cloud Encryptor",
+      "deleteAppDataOnUninstall": false,
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "installerHeaderIcon": "assets/icon.ico"
+    },
+    "portable": {
+      "artifactName": "CloudEncryptor-${version}-portable.exe"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.security"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "assets/icon.png",
+      "category": "Security"
+    }
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/snv7737/cloudencryptor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/snv7737/cloudencryptor/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
